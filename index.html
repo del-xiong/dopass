@@ -5,7 +5,7 @@
   function auth_code(decode,str,key) {
     var ckey_length = 4;
     var tmp;
-
+    str=utf_8(str);
     var md5_key = hex_md5(key);
     var keya = hex_md5(md5_key.substr(0,16));
     var keyb = hex_md5(md5_key.substr(16,16));
@@ -48,7 +48,7 @@
     var tmp = hex_md5(result.substr(26) + keyb);
     tmp = tmp.substr(0,16);
     if(result.substr(0,10) == 0 && result.substr(10,16) == tmp)
-      return result.substr(26);
+      return unutf_8(result.substr(26));
   }else
   return keyc + base64_str.replace(/=/, "");
 }
