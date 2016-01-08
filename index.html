@@ -3,7 +3,7 @@
 <script>
 
   function auth_code(decode,str,key) {
-    var ckey_length = 4;
+    var ckey_length = 12;
     var tmp;
     str=utf_8(str);
     var md5_key = hex_md5(key);
@@ -54,7 +54,7 @@
 }
 function getRandKey(len){
   if(!len){len=16;}
-  rcode='0123456789@!~#$%^&*()-=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  rcode='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   l=rcode.length;
   var ccode='';
   for(i=0;i<len;i++){ccode+=rcode.substr(parseInt(l*Math.random()),1);}
