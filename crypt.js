@@ -1,13 +1,18 @@
 
   function dopass(str,key){
     var r = auth_code(true,str,key);
-    return (r!="" && r!=undefined)?r:auth_code(false,str,key);
+    if(r!="" && r!=undefined)
+      return r;
+    else{
+      var encodeR = "";
+      encodeR = auth_code(false,str,key);
+      return hex_md5(auth_code(true,encodeR,key)) === hex_md5(str)?encodeR:"";
+    }
   }
 
   function auth_code(decode,str,key) {
     var ckey_length = 12;
     var tmp;
-    str=escape(str);
     var SECKEY = "420da90a3e98af5b8481e659af1f8fdb8cecd974b9f3f29672376cc58cc68e3b";
     key = hex_md5(SECKEY + key);
     var md5_key = hex_md5(key);
@@ -19,7 +24,7 @@
     var cryptkey = keya + hex_md5(keya + keyc);
     var key_length = cryptkey.length;
 
-    var string = decode?base64decode(str.substr(ckey_length)):'0000000000'+hex_md5(str + keyb).substr(0,16) + str;
+    var string = decode?Base64.decode(str.substr(ckey_length)):'0000000000'+hex_md5(str + keyb).substr(0,16) + str;
     var string_length = string.length;
     var result = "";
     var box = [];
@@ -47,12 +52,12 @@
      result += chr(ord(string[i]) ^ (box[(box[a] + box[j]) % 256]));  
    }  
 
-   var base64_str = base64encode(result);
+   var base64_str = Base64.encode(result);
    if(decode){
     var tmp = hex_md5(result.substr(26) + keyb);
     tmp = tmp.substr(0,16);
     if(result.substr(0,10) == 0 && result.substr(10,16) == tmp)
-      return unescape(result.substr(26));
+      return result.substr(26);
   }else
   return keyc + base64_str.replace(/=/, "");
 }
