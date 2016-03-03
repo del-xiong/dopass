@@ -1,0 +1,2 @@
+document.getElementById("googleauthauth")&&(document.getElementById("googleauthauth").innerHTML=gs("Authenticate"));document.getElementById("outofbandauth")&&(document.getElementById("outofbandauth").innerHTML=gs("Authenticate"));document.getElementById("gridauth")&&(document.getElementById("gridauth").innerHTML=gs("Authenticate"));document.getElementById("yubiauth")&&(document.getElementById("yubiauth").value=gs("Authenticate"));
+document.getElementById("securityquestionauth")&&(document.getElementById("securityquestionauth").innerHTML=gs("Authenticate"));
