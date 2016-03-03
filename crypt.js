@@ -20,7 +20,6 @@
       G('dopass_key_required').style.opacity = 1;
       return;
     }
-    G('username').value = dopass(isDecode,G('username').value,key);
     G('password').value = dopass(isDecode,G('password').value,key);
     G('notes').value = dopass(isDecode,G('notes').value,key);
   }
