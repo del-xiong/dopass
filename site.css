@@ -588,3 +588,31 @@ label.icon_text:hover, #sitebodymain a:hover{
 #lp_docwrite_site14{
   margin-left:10px;
 }
+
+  #dopass_encode,#dopass_decode{
+    width: 80px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 20px;
+    display: block;
+    border: solid 1px #10943e;
+    background-color: #0da843;
+    color: #fff;
+    float: left;
+    text-align: center;
+    margin: 20px 20px;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+  #dopass_decode{
+    border: solid 1px #b81212;
+    background-color: #e00b0b;
+  }
+
+  #dopass_key_required{
+    text-indent: 20px;
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0;
+  }

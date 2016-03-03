@@ -1,33 +1,42 @@
   var G = function(id){
     return document.getElementById(id);
   }
-  window.onload = function(){
-    var key = localStorage.getItem("key");
-    if(key!="")
-      G("key").value = key;
-  }
-  G("dopass").addEventListener("click",function(){
-    G("result").value = "";
-    G("result").value = dopass(G("string").value,G("key").value);
-  });
-  G("key").addEventListener("change",function(){
-    localStorage.setItem("key",G("key").value);
-  });
-  G("clear").addEventListener("click",function(){
-    localStorage.setItem("key","");
-    G("key").value = "";
-  });
 
-
-  function dopass(str,key){
-    var r = auth_code(true,str,key);
-    if(r!="" && r!=undefined)
-      return r;
-    else{
-      var encodeR = "";
-      encodeR = auth_code(false,str,key);
-      return hex_md5(auth_code(true,encodeR,key)) === hex_md5(str)?encodeR:"";
+  G("dopass_string").addEventListener("keyup",function(){
+    var key = G('dopass_key').value;
+    G('dopass_result').value = auth_code(false,G("dopass_string").value,key);
+  });
+  G("dopass_result").addEventListener("keyup",function(){
+    var key = G('dopass_key').value;
+    G('dopass_string').value = dopass(true,G("dopass_result").value,key);
+  });
+  G('dopass_encode').addEventListener('click',dopassAuto);
+  G('dopass_decode').addEventListener('click',dopassAuto);
+  function dopassAuto(e){
+    G('dopass_key_required').style.opacity = 0;
+    var key = G('dopass_key').value;
+    var isDecode = e.target.id === "dopass_decode"?true:false;
+    if(key === "") {
+      G('dopass_key_required').style.opacity = 1;
+      return;
     }
+    G('username').value = dopass(isDecode,G('username').value,key);
+    G('password').value = dopass(isDecode,G('password').value,key);
+    G('notes').value = dopass(isDecode,G('notes').value,key);
+  }
+
+  function dopass(decode,str,key){
+    var result = "";
+    if(str == "" && !decode)
+      return "";
+    var r = auth_code(decode,str,key);
+    if(r!="" && r!=undefined)
+      result = r;
+    else
+      result = "";
+    if(decode && result === "")
+      result = str;
+    return result;
   }
 
   function auth_code(decode,str,key) {
