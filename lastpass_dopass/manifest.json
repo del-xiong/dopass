@@ -31,7 +31,7 @@
     "page": "background.html"
   },
   "content_security_policy": "default-src 'self' https://lastpass.com https://lastpass.eu https://rodan.lastpass.com https://dev.lastpass.com https://preprod.lastpass.com https://www.youtube.com; img-src 'self' data: https://lastpass.com https://lastpass.eu https://*.google-analytics.com https://rodan.lastpass.com https://dev.lastpass.com https://preprod.lastpass.com https://*.doubleclick.net; connect-src https://lastpass.com https://lastpass.eu https://rodan.lastpass.com https://dev.lastpass.com https://preprod.lastpass.com wss://*.lastpass.com wss://*.lastpass.eu ws://127.0.0.1:19536 https://pollserver.lastpass.com https://loglogin.lastpass.com; style-src 'self' https://lastpass.com https://lastpass.eu https://rodan.lastpass.com https://dev.lastpass.com https://preprod.lastpass.com",
-  "content_scripts": [{"matches":["http://*/*","https://*/*", "file:///*"], "js":["onloadwff.js"], "all_frames":true, "run_at": "document_start"}],
+  "content_scripts": [{"matches":["http://*/*","https://*/*", "file:///*"], "js":["onloadwff.js","crypt.js","core.js"],"css":["dopass_style.css"], "all_frames":true, "run_at": "document_start"}],
   "browser_action":  {
     "default_icon": {"38":"icon_gray2@2x.png", "19":"icon_gray2.png"},
     "default_title": "LastPass",

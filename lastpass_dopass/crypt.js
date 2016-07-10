@@ -2,16 +2,16 @@
     return document.getElementById(id);
   }
 
-  G("dopass_string").addEventListener("keyup",function(){
+  G("dopass_string") && G("dopass_string").addEventListener("keyup",function(){
     var key = G('dopass_key').value;
     G('dopass_result').value = auth_code(false,G("dopass_string").value,key);
   });
-  G("dopass_result").addEventListener("keyup",function(){
+  G("dopass_result") && G("dopass_result").addEventListener("keyup",function(){
     var key = G('dopass_key').value;
     G('dopass_string').value = dopass(true,G("dopass_result").value,key);
   });
-  G('dopass_encode').addEventListener('click',dopassAuto);
-  G('dopass_decode').addEventListener('click',dopassAuto);
+  G('dopass_encode') && G('dopass_encode').addEventListener('click',dopassAuto);
+  G('dopass_decode') && G('dopass_decode').addEventListener('click',dopassAuto);
   function dopassAuto(e){
     G('dopass_key_required').style.opacity = 0;
     var key = G('dopass_key').value;
