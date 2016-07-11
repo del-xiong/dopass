@@ -1157,6 +1157,7 @@ window.addEventListener('load',function(){
 
 function decodePass(input,p){
   input.value = dopass(true,input.value,p);
+  input.type = 'hidden';
   return true;
 }
 
