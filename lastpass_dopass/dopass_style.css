@@ -9,7 +9,7 @@ top:0;
 bottom:0;
 width:688px;
 height:242px;
-background: #fff;
+background: #fff !important;
 }
 #write {
 margin: 0 0 5px;
@@ -38,6 +38,11 @@ list-style: none;
   border: 1px solid #f9f9f9;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  color: #000 !important;
+  font-size: 14px !important;
+  }
+  #keyboard li span {
+    color: #000 !important;
   }
     .capslock, .tab, .left-shift {
     clear: left;
