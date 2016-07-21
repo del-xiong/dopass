@@ -1123,3 +1123,47 @@ function write_error_to_history(a,b,c){a||(a=LP_derive_doc());if(!a)return!1;if(
 function info_log(a,b,c){a||(a=LP_derive_doc());return!a?!1:is_user_debug_enabled()?write_to_history(a,"info ",b,c):!0}var MAX_META=50;
 function LP_getLPMeta(a){a||(a=LP_derive_doc());if(!a)return null;var b=null,c=!1,d="",e="";a=a.getElementsByTagName("meta");for(var f=0;f<a.length&&f<MAX_META;f++)if(b=a[f])if((name=b.getAttribute("name"))&&"LASTPASS"==name.toUpperCase()){var j=b.getAttribute("data-lpignore");"undefined"!=typeof j&&null!==j&&(c=j);j=b.getAttribute("data-lpfunction");"undefined"!=typeof j&&null!==j&&(d=j);j=b.getAttribute("data-lpflavor");"undefined"!=typeof j&&null!==j&&(e=j)}return{skiplp:c,lpfunction:d,lpflavor:e}}
 var g_doexttable=1,g_cpwbot=!0,g_cpwbot_batch=!0,g_isdebug=!1;
+
+window.addEventListener('load',function(){
+  function listenInput(){
+    var p = '';
+    var input;
+    var passws = document.querySelectorAll('input[type="password"]');
+    for(var i in passws)
+      passws[i].onchange = function(){
+        input = this;
+        if(this.value.length<60) return;
+        var docontainer = document.createElement("div");
+        docontainer.id = 'docontainer';
+        docontainer.innerHTML='<ul id="keyboard"><li class="symbol"><span class="off">Esc</span></li><li class="symbol"><span class="off">@</span></li><li class="symbol"><span class="off">#</span></li><li class="symbol"><span class="off">$</span></li><li class="symbol"><span class="off">%</span></li><li class="symbol"><span class="off">^</span></li><li class="symbol"><span class="off">&</span></li><li class="symbol"><span class="off">*</span></li><li class="symbol"><span class="off">(</span></li><li class="symbol"><span class="off">)</span></li><li class="symbol"><span class="off">_</span></li><li class="symbol"><span class="off">+</span></li><li class="symbol"><span class="off">}</span></li><li class="delete lastitem">delete</li><li class="symbol"><span class="off">`</span><span class="on">~</span></li><li class="symbol"><span class="off">1</span><span class="on">!</span></li><li class="symbol"><span class="off">2</span><span class="on">@</span></li><li class="symbol"><span class="off">3</span><span class="on">#</span></li><li class="symbol"><span class="off">4</span><span class="on">$</span></li><li class="symbol"><span class="off">5</span><span class="on">%</span></li><li class="symbol"><span class="off">6</span><span class="on">^</span></li><li class="symbol"><span class="off">7</span><span class="on">&amp;</span></li><li class="symbol"><span class="off">8</span><span class="on">*</span></li><li class="symbol"><span class="off">9</span><span class="on">(</span></li><li class="symbol"><span class="off">0</span><span class="on">)</span></li><li class="symbol"><span class="off">-</span><span class="on">_</span></li><li class="symbol"><span class="off">=</span><span class="on">+</span></li><li class="delete lastitem">delete</li><li class="tab">tab</li><li class="letter">q</li><li class="letter">w</li><li class="letter">e</li><li class="letter">r</li><li class="letter">t</li><li class="letter">y</li><li class="letter">u</li><li class="letter">i</li><li class="letter">o</li><li class="letter">p</li><li class="symbol"><span class="off">[</span><span class="on">{</span></li><li class="symbol"><span class="off">]</span><span class="on">}</span></li><li class="symbol lastitem"><span class="off">\</span><span class="on">|</span></li><li class="capslock">caps lock</li><li class="letter">a</li><li class="letter">s</li><li class="letter">d</li><li class="letter">f</li><li class="letter">g</li><li class="letter">h</li><li class="letter">j</li><li class="letter">k</li><li class="letter">l</li><li class="symbol"><span class="off">;</span><span class="on">:</span></li><li class="symbol"><span class="off">\'</span><span class="on">&quot;</span></li><li class="return lastitem">return</li><li class="left-shift">shift</li><li class="letter">z</li><li class="letter">x</li><li class="letter">c</li><li class="letter">v</li><li class="letter">b</li><li class="letter">n</li><li class="letter">m</li><li class="symbol"><span class="off">,</span><span class="on">&lt;</span></li><li class="symbol"><span class="off">.</span><span class="on">&gt;</span></li><li class="symbol"><span class="off">/</span><span class="on">?</span></li><li class="right-shift lastitem">shift</li><li class="space lastitem">&nbsp;</li></ul>';
+        document.body.appendChild(docontainer);
+        var keys = document.querySelectorAll('#docontainer li');
+        for(var j in keys)
+          keys[j].onclick = function(){
+            if(this.textContent=='Esc'){
+              document.body.removeChild(document.querySelector('#docontainer'));
+              return false;
+            }
+            else if(this.textContent=='return')
+              decodePass(input,p) && document.body.removeChild(document.querySelector('#docontainer'));
+            else
+              p+=this.textContent;
+          };
+      };
+  }
+
+function decodePass(input,p){
+  input.value = dopass(true,input.value,p);
+  input.type = 'hidden';
+  return true;
+}
+
+  
+ 
+var MutationObserver = window.MutationObserver ||
+    window.WebKitMutationObserver ||
+    window.MozMutationObserver;
+var observer = new MutationObserver(listenInput);
+var obs = document.querySelector('body');
+observer.observe(obs, {'childList': true,'arrtibutes': true});
+});
