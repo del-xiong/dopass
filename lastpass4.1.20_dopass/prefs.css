@@ -1,0 +1,68 @@
+  #body      {font-size:13px;}
+  .prefsbody { padding: 40px 0px; margin:0px;}
+  #prefscont { padding: 0px; width: 860px; margin: 0px auto; border: 1px solid #c3c3c3; -webkit-border-radius: 1px; background:#e6e6e6; min-height:615px;}
+  #prefsinner { padding:8px; }
+  .preftext  {font-size:13px;}
+  .menuspacer {height:6px;padding-top:5px;background:#F5FAFC;}
+  .menuspacer div {height:1px;}
+  .menubuttontext {font-size:13px;width:180px;padding-left:25px;padding-right:5px;height:20px;line-height:20px;vertical-align:middle;cursor:default;}
+  .menubutton:hover {background:#DD7050;color:#fff;}
+  .menubutton { margin:4px 0px;}
+  .menubutton2 {background:#DD7050;color:#fff; margin:4px 0px;}
+
+  input[type=checkbox] { margin:5px 3px 5px 0px; }
+
+#helptranslate { width:auto; }
+
+
+
+.classic { padding: 0.8em 1em; }
+
+#prefspacer{
+  height:470px;
+}
+.prefsbody hr {
+width: 100%;
+display: block;
+height: 1px;
+border: 0;
+border-top: 1px solid #ccc;
+margin-top: 15px;
+}
+#menu{
+  margin-top:6px;
+  border:1px solid #999; float:left; width:150px; height: 300px;
+}
+fieldset{
+  width: 650px; border:1px solid #ccc; margin-left: 10px;
+}
+
+.prefpane{
+  border:0px solid #999; float:left; width:500px; height:300px;
+}
+
+.hidden{
+  display:none;
+}
+.right{
+  float:right;
+}
+#btns{
+  padding-right:30px;
+}
+.prefinput{
+  width:30px !important;
+}
+
+#defaultffid{
+  max-width:300px;
+}
+
+#default{
+  float:left;
+}
+
+.iconpref {
+  vertical-align: middle;
+  padding-bottom: 5px;
+}
