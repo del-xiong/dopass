@@ -424,7 +424,7 @@ input[type=text], input[type=password], textarea{
 }
 
 #notes{
-  height:100px;
+  height:260px;
   font-family: monospace; width: 600px; max-width: 600px;
 }
 
